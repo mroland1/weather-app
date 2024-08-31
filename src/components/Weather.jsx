@@ -80,6 +80,11 @@ const Weather = () => {
           type="text"
           placeholder="Search"
           className="input"
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              search(inputRef.current.value);
+            }
+          }}
         />
         <img
           src={search_icon}
