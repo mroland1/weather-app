@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Weather.css";
 import search_icon from "../assets/search.png";
 import clear_icon from "../assets/clear.png";
@@ -10,6 +10,7 @@ import wind_icon from "../assets/wind.png";
 import humidity_icon from "../assets/humidity.png";
 
 const Weather = () => {
+  const inputRef = useRef();
   const [weatherData, setWeatherDate] = useState(false);
 
   const allIcons = {
@@ -30,6 +31,13 @@ const Weather = () => {
   };
 
   const search = async (city) => {
+    if (city === "") {
+      const searchPlaceholder = document.querySelectorAll(".input");
+      searchPlaceholder.forEach((input) => {
+        input.placeholder = "Enter a city name!";
+      });
+      return;
+    }
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
         import.meta.env.VITE_APP_ID
@@ -49,16 +57,29 @@ const Weather = () => {
   };
 
   useEffect(() => {
-    search("Pécs");
+    search("London");
   }, []);
 
   return (
     <div className="weather">
       <div className="search-bar">
-        <input type="text" placeholder="Search" />
-        <img src={search_icon} alt="Search Icon" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          className="input"
+        />
+        <img
+          src={search_icon}
+          alt="Search Icon"
+          onClick={() => search(inputRef.current.value)}
+        />
       </div>
-      <img src={clear_icon} alt="Clear" className="weather-icon" />
+      <img
+        src={weatherData.icon}
+        alt={weatherData.icon}
+        className="weather-icon"
+      />
       <p className="temperature">{weatherData.temperature}&#8451;</p>
       <p className="location">{weatherData.location}</p>
       <div className="weather-data">
