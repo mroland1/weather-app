@@ -30,7 +30,7 @@ const Weather = () => {
     "13n": snow_icon,
   };
 
-  const search = async (city) => {
+  const search = async (cityy) => {
     if (city === "") {
       const searchPlaceholder = document.querySelectorAll(".input");
       searchPlaceholder.forEach((input) => {
