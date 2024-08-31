@@ -1,20 +1,20 @@
 .weather {
   place-self: center;
-  padding: 20px; /* Csökkentve mobil nézetben */
+  padding: 20px;
   border-radius: 20px;
   background-image: linear-gradient(45deg, rgb(6, 26, 26), rgb(76, 120, 125));
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 400px;
-  width: 75%; /* A szélesség alkalmazkodik a kijelző méretéhez */
+  width: 75%;
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 100%; /* Szélesség skálázása */
+  width: 100%;
   justify-content: center;
 }
 
@@ -26,12 +26,12 @@
   padding-left: 25px;
   color: #626262;
   background: #ebfffc;
-  font-size: 1rem; /* A betűméret rugalmas */
-  width: 100%; /* Szélesség skálázása */
+  font-size: 1rem;
+  width: 100%;
 }
 
 .search-bar img {
-  width: 40px; /* Kisebb méret mobilon */
+  width: 40px;
   padding: 10px;
   border-radius: 50%;
   background: #ebfffc;
@@ -39,19 +39,19 @@
 }
 
 .weather-icon {
-  width: 120px; /* Kisebb méret mobilon */
+  width: 120px;
   margin: 20px 0;
 }
 
 .temperature {
   color: #fff;
-  font-size: 3rem; /* Rugalmas betűméret */
+  font-size: 3rem;
   line-height: 1;
 }
 
 .location {
   color: #fff;
-  font-size: 2rem; /* Rugalmas betűméret */
+  font-size: 2rem;
 }
 
 .weather-data {
@@ -59,7 +59,7 @@
   margin-top: 30px;
   color: #fff;
   display: flex;
-  flex-direction: column; /* Mobilon egymás alá kerülnek */
+  flex-direction: column;
   gap: 20px;
   justify-content: space-evenly;
 }
@@ -115,7 +115,7 @@
   }
 
   .weather-data {
-    flex-direction: row; /* Asztali nézetben egymás mellé kerülnek */
+    flex-direction: row;
   }
 
   .weather-data .col {
