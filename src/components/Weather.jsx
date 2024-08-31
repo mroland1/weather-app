@@ -44,6 +44,15 @@ const Weather = () => {
       }`;
       const response = await fetch(url);
       const data = await response.json();
+
+      if (!response.ok) {
+        const input = document.querySelectorAll(".input");
+        input.forEach((input) => {
+          input.placeholder = "City not found!";
+          input.value = "";
+        });
+      }
+
       console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
       setWeatherDate({
@@ -53,11 +62,14 @@ const Weather = () => {
         location: data.name,
         icon: icon,
       });
-    } catch (error) {}
+    } catch (error) {
+      setWeatherDate(false);
+      console.error("Error in fetching weather data");
+    }
   };
 
   useEffect(() => {
-    search("London");
+    search("");
   }, []);
 
   return (
@@ -75,29 +87,35 @@ const Weather = () => {
           onClick={() => search(inputRef.current.value)}
         />
       </div>
-      <img
-        src={weatherData.icon}
-        alt={weatherData.icon}
-        className="weather-icon"
-      />
-      <p className="temperature">{weatherData.temperature}&#8451;</p>
-      <p className="location">{weatherData.location}</p>
-      <div className="weather-data">
-        <div className="col">
-          <img src={humidity_icon} alt="Humidity" />
-          <div>
-            <p>{weatherData.humidity} %</p>
-            <span>Humidity</span>
+      {weatherData ? (
+        <>
+          <img
+            src={weatherData.icon}
+            alt={weatherData.icon}
+            className="weather-icon"
+          />
+          <p className="temperature">{weatherData.temperature}&#8451;</p>
+          <p className="location">{weatherData.location}</p>
+          <div className="weather-data">
+            <div className="col">
+              <img src={humidity_icon} alt="Humidity" />
+              <div>
+                <p>{weatherData.humidity} %</p>
+                <span>Humidity</span>
+              </div>
+            </div>
+            <div className="col">
+              <img src={wind_icon} alt="Humidity" />
+              <div>
+                <p>{weatherData.windSpeed} km/h</p>
+                <span>Wind Speed</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="col">
-          <img src={wind_icon} alt="Humidity" />
-          <div>
-            <p>{weatherData.windSpeed} km/h</p>
-            <span>Wind Speed</span>
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
