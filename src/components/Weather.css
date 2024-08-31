@@ -13,10 +13,9 @@
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   width: 100%; /* Szélesség skálázása */
   justify-content: center;
-  flex-direction: column;
 }
 
 .search-bar input {
