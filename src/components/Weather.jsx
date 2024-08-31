@@ -90,6 +90,7 @@ const Weather = () => {
           src={search_icon}
           alt="Search Icon"
           onClick={() => search(inputRef.current.value)}
+          className="searchIcon"
         />
       </div>
       {weatherData ? (
